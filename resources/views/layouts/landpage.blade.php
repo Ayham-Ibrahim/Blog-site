@@ -13,6 +13,9 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
     <style>
     .nav-ay {
             display: flex;
@@ -115,6 +118,11 @@
             &copy; 2024 <span>Ayham</span> All Right Reserved
         </div>
         <!--End Footer -->
+        <script>
+            AOS.init({
+                duration: 1200, // Duration of the animation in milliseconds
+            });
+        </script>
 </body>
 
 </html>

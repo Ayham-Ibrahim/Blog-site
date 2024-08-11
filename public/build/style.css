@@ -1,0 +1,65 @@
+
+/* start landing section */
+.landing {
+    background-image: url(../land.webp);
+    background-size: cover;
+    height:calc(100vh - 64px);
+    position: relative;
+}
+.landing .intro-text {
+    position: absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    width: 300px;
+    max-width: 100%;
+}
+.landing .intro-text h1 {
+    margin-top: 0;
+    font-size: 50px;
+    font-weight: bold;
+    color: rgb(0, 233, 233);
+    font-family: 'Work Sans', sans-serif;
+}
+.landing .intro-text P {
+    font-size: 19px;
+    line-height: 1.8;
+}
+@keyframes scroll {
+    0% {
+      transform: translate(-50%, 0);
+    }
+    50% {
+      transform: translate(-50%, -20px);
+    }
+    100% {
+      transform: translate(-50%, 0);
+    }
+  }
+
+.scrooling {
+    position: absolute;
+    left: 50%;
+    bottom: 40px;
+    transform: translate(-50%);
+    animation: scroll 2s ease 0s infinite normal;
+    cursor: pointer !important;
+    height: 80px;
+  }
+/* End landing section */
+
+
+/* Start Footer */
+.footer {
+    padding: 30px 20px;
+    text-align: center;
+    background-color: #2c4755;
+    color: white;
+    font-size: 18px;
+}
+.footer span {
+    color: aqua;
+    font-weight: bold;
+}
+/* END Footer */

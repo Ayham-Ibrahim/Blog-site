@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Comment;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,6 +18,7 @@ class Blog extends Model
     protected $fillable = [
         'title',
         'user_id',
+        'category_id',
         'content',
         'photo',
     ];
@@ -37,6 +39,14 @@ class Blog extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * get the category that the blog belongs to
+     * @return BelongsTo
+     */
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
 
     /**

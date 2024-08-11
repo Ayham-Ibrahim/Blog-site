@@ -39,4 +39,8 @@ Route::middleware('auth')->group(function () {
     
     // add comment
     Route::post('add-comment/{blog}', [CommentController::class, 'addComment'])->name('addComment');
+    Route::middleware('owner')->group(function () {
+        Route::delete('blogs/{blog}/comments/{comment}', [CommentController::class, 'deleteComment'])->name('comments.delete');
+        Route::patch('blogs/{blog}/comments/{id}/hide', [CommentController::class, 'hideComment'])->name('comments.hide');
+    });
 });

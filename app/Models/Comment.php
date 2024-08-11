@@ -16,6 +16,7 @@ class Comment extends Model
         'content',
         'user_id',
         'blog_id',
+        'hidden',
     ];
 
     /**

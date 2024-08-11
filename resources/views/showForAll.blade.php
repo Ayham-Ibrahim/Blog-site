@@ -17,11 +17,17 @@
             <img src="{{ asset($blog->photo) }}" alt="Blog Image" class="img-fluid">
         </div>
         <div class="col-md-6">
-            <h2>{{ $blog->title }}</h2>
+            <h2 style="font-weight: bold">{{ $blog->title }}</h2>
+            <h4 style="font-weight: bold;color:gray">{{ $blog->category->name }}</h4>
             <p>{{ $blog->content }}</p>
         </div>
     </div>
 
+    @if(Session::get('success'))
+    <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+        {{ Session::get('success') }}
+    </div>
+    @endif
     <!-- Comments Section -->
     <div class="row mt-4">
         <div class="col-md-12">
@@ -40,7 +46,7 @@
             @endguest
             <hr>
             <!-- Display Comments -->
-            @foreach($blog->comments as $comment)
+            @foreach($blog->comments->where('hidden', false) as $comment)
                 <div class="mb-3">
                     <div style="display:flex;gap:20px; justify-content:flex-start;align-items:center;margin-bottom: 10px;">
                         <img src="{{ asset('/images.png') }}" alt="user Image" class="img-fluid" style="width:30px; height:30px;">

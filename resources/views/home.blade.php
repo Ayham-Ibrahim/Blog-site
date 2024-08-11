@@ -29,6 +29,7 @@
                         <img class="card-img-top" src="{{ asset($blog->photo) }}" style="height: 300px;" alt="Card image cap">
                         <div class="card-body">
                         <h5 class="card-title" style="font-weight: bold">{{$blog->title}}</h5>
+                        <h6 class="card-title" style="font-weight: bold;color:gray">{{ $blog->category->name }}</h6>
                         <p class="card-text">{{$blog->content}}</p>
                         <form action="{{ route('blogs.destroy',$blog->id) }}" method="POST">
                             @csrf

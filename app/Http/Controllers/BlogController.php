@@ -16,9 +16,13 @@ class BlogController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $blogs = Blog::paginate(10);
+        $query = Blog::query();
+        if ($request->has('category_id')) {
+            $query->where('category_id', $request->category_id);
+        }
+        $blogs = $query->paginate(10);
         return view('welcome',['blogs'=>$blogs]);
     }
 
@@ -39,6 +43,7 @@ class BlogController extends Controller
         $blog = Blog::create([
             'title' => $data['title'],
             'content' => $data['content'],
+            'category_id' => $data['category_id'],
             'photo' => $this->storeFile($data['photo'], 'blogs'),
         ]);
         return redirect()->route('home')->with('sucsses','your blog has been added successfuly');
@@ -67,10 +72,17 @@ class BlogController extends Controller
     public function update(UpdateBlogRequest $request, Blog $blog)
     {
         $data = $request->validated();
-        $blog->title = $data['title'] ?? $blog->title;
-        $blog->content = $data['content'] ?? $blog->content;
-        $blog->photo = $this->fileExists($data['photo'], 'blogs') ?? $blog->photo;
-        $blog->save();
+        if(!$request->hasFile('photo')) {
+            $path =  $request->input('current_photo');
+        }else{
+            $path = $this->storeFile($request->photo, 'blogs');
+        }
+        $blog->update([
+            'title'=> $data['title'],
+            'content'=> $data['content'],
+            'category_id'=> $data['category_id'],
+            'photo'=> $path
+        ]);
         return redirect()->route('home')->with('sucsses','your blog has been updated successfuly');
     }
 

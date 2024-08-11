@@ -25,6 +25,17 @@
                 <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
+        <div class="form-group mt-3">
+            <label for="category_id">Category</label>
+            <select name="category_id" class="form-control mt-2" required>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}" {{ $category->id == old('category_id', $blog->category_id) ? 'selected' : '' }}>{{ $category->name }}</option>
+                @endforeach
+            </select>
+            @error('content')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
 
         <div class="form-group mt-4">
             <label for="exampleFormControlTextarea1" class="mb-2">Content <span style="font-size: 13px;color:rgb(99, 99, 99)">(Enter the Blog Content)</span></label>
@@ -35,7 +46,10 @@
         </div>
         @if($blog->photo)
         <img src="{{ asset($blog->photo) }}" alt="Current Blog Image" style="max-width: 200px; margin-top: 20px;" />
+        <!-- Hidden input to carry the existing photo path -->
+        <input type="hidden" name="current_photo" value="{{ $blog->photo }}">
         @endif
+
         <div class="mb-3 mt-4">
             <label for="formFile" class="form-label">Choose The Blog Photo</label>
             <input class="form-control" type="file" id="formFile" name="photo">

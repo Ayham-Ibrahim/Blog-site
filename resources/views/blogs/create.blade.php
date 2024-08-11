@@ -20,7 +20,17 @@
                 <small class="text-danger">{{ $message }}</small>
             @enderror
         </div>
-
+        <div class="form-group mt-3">
+            <label for="category_id">Category</label>
+            <select name="category_id" class="form-control mt-2" required>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+            @error('content')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+        </div>
         <div class="form-group mt-4">
             <label for="exampleFormControlTextarea1" class="mb-2">Content <span style="font-size: 13px;color:rgb(99, 99, 99)">(Enter the Blog Content)</span></label>
             <textarea class="form-control" name="content" id="exampleFormControlTextarea1" rows="3"></textarea>
